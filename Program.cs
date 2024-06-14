@@ -11,8 +11,6 @@
 //search by product type
 
 
-using System.Runtime.CompilerServices;
-
 List <ProductType> productTypes = new List<ProductType>()
 {
     new ProductType()
@@ -99,7 +97,8 @@ while (choice != 6)
         case 2:
             throw new NotImplementedException();
         case 3:
-            throw new NotImplementedException();
+            AddProduct();
+            break;
         case 4:
             throw new NotImplementedException();
         case 5:
@@ -125,3 +124,112 @@ void ListProducts()
     }
 }
 
+void AddProduct()
+{
+    Console.WriteLine(@"
+    Name your product");
+
+    string name = Console.ReadLine();
+
+    Console.WriteLine(@"
+    Name your price");
+
+    decimal price = decimal.Parse(Console.ReadLine());
+
+    Console.WriteLine(@"
+    Select a category:");
+
+    for ( int i = 0; i <productTypes.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {productTypes[i].Category}");
+    }
+
+
+     int productTypeId = int.Parse(Console.ReadLine());
+
+    Product productToAdd = new Product()
+    {
+        Name = name,
+        Price = price,
+        Available = true,
+        ProductTypeId = productTypeId
+
+    };
+
+    products.Add(productToAdd);
+
+    if (products.Last().Name == name)
+    {
+        Console.WriteLine(@$"{name} was added to the inventory!");
+    }
+    else 
+    {
+        Console.WriteLine(@$"
+        There was a problem adding your product to inventory!");
+    }
+
+    Console.WriteLine("Would you like to add another product? Enter y/n.");
+
+    string rerun = Console.ReadLine();
+
+    if (rerun == "y")
+    {
+        AddProduct();
+    }
+
+}
+
+void UpdateProduct()
+{
+    Console.WriteLine(@"Please select a product to update");
+
+    ListProducts();
+
+    int choice = int.Parse(Console.ReadLine());
+
+    if (choice > 0 || choice <= products.Count)
+    {
+        Product prod = products[choice - 1];
+        UpdateProperties(prod);
+    }
+    else
+    {
+        Console.WriteLine(@"Please make a selection from the given options");
+    }
+
+
+}
+
+void UpdateProperties(Product prod)
+{
+    int choice = 0;
+    while (choice != 5)
+    {
+
+    Console.WriteLine(@$"Which property would you like to change?
+
+    1. Name: {prod.Name}
+    2. Price: {prod.Price}
+    3. ProductTypeId: {prod.ProductTypeId}
+    4. Availability: {prod.Available}
+    5. I'm finished updating properties
+    ");
+
+    choice = int.Parse(Console.ReadLine());
+
+    switch(choice)
+    {
+        case 1 :
+            Console.WriteLine(" What is the new name of this product?");
+            string name = Console.ReadLine();
+            prod.Name = name;
+            break;
+
+    }
+
+    }
+
+    
+
+
+}
