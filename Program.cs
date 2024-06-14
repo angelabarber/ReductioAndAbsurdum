@@ -94,7 +94,8 @@ while (choice != 6)
     switch(choice)
     {
         case 1:
-            throw  new NotImplementedException();
+            ListProducts();
+            break;
         case 2:
             throw new NotImplementedException();
         case 3:
@@ -113,3 +114,14 @@ while (choice != 6)
     }
 
 }
+
+void ListProducts()
+{
+    for(int i = 0; i < products.Count;  i++)
+    {
+        Console.WriteLine(@$"
+        ----------------------------
+         {i + 1 }. {products[i].Name}");
+    }
+}
+
