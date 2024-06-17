@@ -103,7 +103,8 @@ while (choice != 6)
             UpdateProduct();
             break;
         case 5:
-            throw new NotImplementedException();
+            DeleteProduct();
+            break;
         case 6:
             Console.WriteLine(@"
             Fek you! Come again...
@@ -268,7 +269,18 @@ void UpdateProperties(Product prod)
 
     }
 
-    
+}
 
+void DeleteProduct()
+{
+    Console.WriteLine("Which product would you like to delete?");
+
+    ListProducts();
+
+    int choice = int.Parse(Console.ReadLine());
+
+    products.RemoveAt(choice -1);
+
+    Console.WriteLine("Delete Successful");
 
 }
