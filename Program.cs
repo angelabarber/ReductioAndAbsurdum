@@ -92,10 +92,11 @@ while (choice != 6)
     switch(choice)
     {
         case 1:
-            ListProducts();
+            ListProducts(products);
             break;
         case 2:
-            throw new NotImplementedException();
+            ListByProductType();
+            break;
         case 3:
             AddProduct();
             break;
@@ -116,13 +117,13 @@ while (choice != 6)
 
 }
 
-void ListProducts()
+void ListProducts(List<Product>prods)
 {
-    for(int i = 0; i < products.Count;  i++)
+    for(int i = 0; i < prods.Count;  i++)
     {
         Console.WriteLine(@$"
         ----------------------------
-         {i + 1 }. {products[i].Name}");
+         {i + 1 }. {prods[i].Name}");
     }
 }
 
@@ -194,7 +195,7 @@ void UpdateProduct()
 {
     Console.WriteLine(@"Please select a product to update");
 
-    ListProducts();
+    ListProducts(products);
 
     int choice = int.Parse(Console.ReadLine());
 
@@ -275,7 +276,7 @@ void DeleteProduct()
 {
     Console.WriteLine("Which product would you like to delete?");
 
-    ListProducts();
+    ListProducts(products);
 
     int choice = int.Parse(Console.ReadLine());
 
@@ -283,4 +284,18 @@ void DeleteProduct()
 
     Console.WriteLine("Delete Successful");
 
+}
+
+void ListByProductType()
+{
+    Console.WriteLine("Select a product filter:");
+
+    ListProductTypes();
+
+    int choice = int.Parse(Console.ReadLine());
+
+    List <Product> filteredList = new List <Product>();
+    filteredList = products.Where(p => p.ProductTypeId == choice).ToList(); 
+
+    ListProducts(filteredList);
 }
