@@ -38,7 +38,8 @@ List <Product> products = new List<Product>()
         Name = "Gooseberry Juice",
         Price = 8M,
         Available = true,
-        ProductTypeId = 2
+        ProductTypeId = 2,
+        DateStocked = new DateTime(2023, 10, 31)
 
     },
         new Product()
@@ -46,7 +47,8 @@ List <Product> products = new List<Product>()
         Name = "Neville's Formal Slippers",
         Price = 12M,
         Available = true,
-        ProductTypeId = 1
+        ProductTypeId = 1,
+        DateStocked = new DateTime(2024, 4, 15)
 
     },
         new Product()
@@ -54,7 +56,8 @@ List <Product> products = new List<Product>()
         Name = "Json Obj",
         Price = 6M,
         Available = false,
-        ProductTypeId = 3
+        ProductTypeId = 3,
+        DateStocked = new DateTime(2023, 12, 31)
 
     },
         new Product()
@@ -62,7 +65,8 @@ List <Product> products = new List<Product>()
         Name = "The Middle Finger",
         Price = 90M,
         Available = true,
-        ProductTypeId = 4
+        ProductTypeId = 4,
+        DateStocked = new DateTime(2023, 6, 1)
 
     },
 };
@@ -123,7 +127,7 @@ void ListProducts(List<Product>prods)
     {
         Console.WriteLine(@$"
         ----------------------------
-         {i + 1 }. {prods[i].Name}");
+         {i + 1 }. {prods[i].Name} - {prods[i].DaysOnShelf} days on shelf");
     }
 }
 
