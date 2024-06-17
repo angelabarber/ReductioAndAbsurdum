@@ -100,7 +100,8 @@ while (choice != 6)
             AddProduct();
             break;
         case 4:
-            throw new NotImplementedException();
+            UpdateProduct();
+            break;
         case 5:
             throw new NotImplementedException();
         case 6:
@@ -124,6 +125,19 @@ void ListProducts()
     }
 }
 
+void ListProductTypes()
+{
+
+    for ( int i = 0; i <productTypes.Count; i++)
+    {
+        Console.WriteLine($"{i + 1}. {productTypes[i].Category}");
+    }
+
+
+     
+}
+
+
 void AddProduct()
 {
     Console.WriteLine(@"
@@ -139,13 +153,9 @@ void AddProduct()
     Console.WriteLine(@"
     Select a category:");
 
-    for ( int i = 0; i <productTypes.Count; i++)
-    {
-        Console.WriteLine($"{i + 1}. {productTypes[i].Category}");
-    }
+    ListProductTypes();
 
-
-     int productTypeId = int.Parse(Console.ReadLine());
+    int productTypeId = int.Parse(Console.ReadLine());
 
     Product productToAdd = new Product()
     {
@@ -223,6 +233,35 @@ void UpdateProperties(Product prod)
             Console.WriteLine(" What is the new name of this product?");
             string name = Console.ReadLine();
             prod.Name = name;
+            break;
+
+        case 2:
+            Console.WriteLine(" What is the new price?");
+            string price = Console.ReadLine();
+            prod.Price = Decimal.Parse(price);
+            break;
+        
+        case 3:
+            Console.WriteLine("Please Select a new product type ");
+            ListProductTypes();
+            // test
+            int productType = int.Parse(Console.ReadLine());
+            prod.ProductTypeId = productType;
+            break;
+
+        case 4:
+            prod.Available = !prod.Available;
+            Console.WriteLine(prod.Available 
+            ? "Your product is in stock" 
+            : "Your product has been sold");
+            break;
+
+        case 5: 
+            Console.WriteLine("Product Update Completed");
+            break;
+
+        default:
+            Console.WriteLine("Please choose from the listed options only");
             break;
 
     }
